@@ -1,8 +1,9 @@
 const TodoCreate = () => {
+  // Make Handler
   const handleSubmit = (event) => {
-    event.prentDefault();
+    event.preventDefault();
     const newTodo = {
-      id: Math.floor(Math.random() * 100 + 1),
+      id: Math.floor(Math.random() * 100 + 4),
       title: "Learn React",
     };
     console.log(newTodo);
