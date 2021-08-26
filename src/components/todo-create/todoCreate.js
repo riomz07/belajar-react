@@ -1,23 +1,32 @@
-const TodoCreate = () => {
+import { useState } from "react";
+
+const TodoCreate = (props) => {
+  const [getInputTodo, setInputTodo] = useState("");
   // Make Handler
   const handleSubmit = (event) => {
+    //biar button submit tdk refresh
     event.preventDefault();
+    //membuat nilai baru todo
     const newTodo = {
       id: Math.floor(Math.random() * 100 + 4),
-      title: "Learn React",
+      title: getInputTodo,
     };
-    console.log(newTodo);
+    props.onCreateTodo(newTodo);
+    setInputTodo("");
+  };
+
+  const handleInputTodo = (event) => {
+    setInputTodo(event.target.value);
+    console.log(getInputTodo);
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <div class="mb-3 mx-5">
-        <label for="exampleInputEmail1" class="form-label">
-          Masukan Kegiatan
-        </label>
-        <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
+      <div className="mb-3 mx-5">
+        <label className="form-label">Masukan Kegiatan</label>
+        <input type="text" className="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" onChange={handleInputTodo} value={getInputTodo} />
       </div>
-      <button type="submit" class="btn btn-primary mb-3">
+      <button type="submit" className="btn btn-primary mb-3">
         Submit
       </button>
     </form>
